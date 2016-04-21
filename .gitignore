@@ -29,3 +29,8 @@ sysinfo.txt
 /TestProject/Assets/UnityVS
 /TestProject/Assets/UnityVS.meta
 /TestProject/Builds
+
+#VSCode integration plugin
+/.vscode/
+/Assets/VSCode.meta
+/Assets/VSCode/

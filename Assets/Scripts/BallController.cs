@@ -1,17 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BallController : MonoBehaviour {
+public class BallController : MonoBehaviour
+{
     private Vector3 velocity;
+    private Vector3 baseForwardVelocity;
     private bool moving;
-	
-	void Start () {
+
+    void Start()
+    {
         moving = false;
-        velocity = this.transform.forward;
+        baseForwardVelocity = this.transform.forward;
+        Reset();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Reset()
+    {
+        this.moving = false;
+        this.velocity = baseForwardVelocity;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKey(KeyCode.Space) && !moving)
         {
             moving = true;
@@ -28,8 +39,16 @@ public class BallController : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        ContactPoint contactPoint = col.contacts[0];
-        velocity = 2 * (Vector3.Dot(velocity, Vector3.Normalize(contactPoint.normal))) * Vector3.Normalize(contactPoint.normal) - velocity;
-        velocity *= -1;
+        if (col.gameObject.tag == Constants.GAME_OVER_TAG)
+        {
+            Reset();
+            GameObject.Find(Constants.GAME_MANAGER_NAME).GetComponent<GameManager>().RestartGame();
+        }
+        else
+        {
+            ContactPoint contactPoint = col.contacts[0];
+            velocity = 2 * (Vector3.Dot(velocity, Vector3.Normalize(contactPoint.normal))) * Vector3.Normalize(contactPoint.normal) - velocity;
+            velocity *= -1;
+        }
     }
 }
