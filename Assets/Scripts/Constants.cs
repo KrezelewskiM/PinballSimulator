@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class Constants {
-	public const string GAME_OVER_TAG = "GameOver";
-	public const string GAME_MANAGER_NAME = "GameManager";
+﻿public class Constants
+{
+    public const string GAME_OVER_TAG = "GameOver";
+    public const string GAME_MANAGER_NAME = "GameManager";
 }
