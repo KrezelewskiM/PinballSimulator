@@ -421,6 +421,7 @@ GameObject:
   - 33: {fileID: 837380663}
   - 65: {fileID: 837380662}
   - 23: {fileID: 837380661}
+  - 114: {fileID: 837380664}
   m_Layer: 0
   m_Name: WallCorner (1)
   m_TagString: Collidable
@@ -485,6 +486,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 837380659}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &837380664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837380659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ecc880427af421f871f63f707b3745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &934240083
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +989,10 @@ Prefab:
     - target: {fileID: 494836, guid: 7de5b0fb711c04e1aa14901e52d3df8f, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437140, guid: 7de5b0fb711c04e1aa14901e52d3df8f, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7de5b0fb711c04e1aa14901e52d3df8f, type: 2}
