@@ -22,7 +22,8 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && !moving)
+
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 1")) && !moving)
         {
             moving = true;
         }
