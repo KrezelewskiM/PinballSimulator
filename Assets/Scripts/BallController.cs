@@ -37,6 +37,11 @@ public class BallController : MonoBehaviour
         }
     }
 
+    public void StartBall(float force)
+    {
+        this.GetComponent<Rigidbody>().AddForce(baseForwardVelocity * force, ForceMode.Impulse);
+    }
+
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == Constants.GAME_OVER_TAG)

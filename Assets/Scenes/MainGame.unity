@@ -89,6 +89,12 @@ NavMeshSettings:
 GameObject:
   m_PrefabParentObject: {fileID: 127150, guid: 7de5b0fb711c04e1aa14901e52d3df8f, type: 2}
   m_PrefabInternal: {fileID: 2077499655}
+--- !u!114 &22148386 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11438730, guid: 7de5b0fb711c04e1aa14901e52d3df8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2077499655}
+  m_Script: {fileID: 11500000, guid: 9ff50c055d15790499a6b6b6444d60a1, type: 3}
 --- !u!1 &93431351
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +761,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 831218338}
   m_RootOrder: 0
+--- !u!1 &1067938450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1067938452}
+  - 114: {fileID: 1067938451}
+  m_Layer: 0
+  m_Name: SpringLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1067938451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1067938450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201c2db7fda1644568552a216547f8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 22148386}
+  startingPosition: {fileID: 1732389964}
+  springForce: 2
+--- !u!4 &1067938452
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1067938450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1096706043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1055,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &1248423097
 MeshRenderer:
@@ -1157,6 +1205,7 @@ MonoBehaviour:
   direction: LEFT
   startingRotation: -45
   maxRotation: -75
+  gamePad: 0
 --- !u!1 &1732389964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1365,7 @@ MonoBehaviour:
   direction: RIGHT
   startingRotation: 45
   maxRotation: 75
+  gamePad: 0
 --- !u!1 &1842670186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1382,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &1842670187
 MeshRenderer:
@@ -1582,7 +1632,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 5437140, guid: 7de5b0fb711c04e1aa14901e52d3df8f, type: 2}
       propertyPath: m_CollisionDetection
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7de5b0fb711c04e1aa14901e52d3df8f, type: 2}
