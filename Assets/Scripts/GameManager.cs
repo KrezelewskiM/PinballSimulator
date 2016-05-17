@@ -15,5 +15,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         ball.transform.position = startingPoint.transform.position;
+        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

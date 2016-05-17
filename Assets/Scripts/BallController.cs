@@ -6,6 +6,8 @@ public class BallController : MonoBehaviour
     private Vector3 baseForwardVelocity;
     private bool moving;
 
+    public TimeManager timeManager;
+
     void Start()
     {
         moving = false;
@@ -22,23 +24,23 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey("joystick button 1")) && !moving)
+        if (Input.GetKeyDown(KeyCode.R) == true)
         {
-            moving = true;
+            BallPositionInfo ballPositionInfo = timeManager.GetSavedBallPosition();
+            this.transform.position = ballPositionInfo.ballPosition;
+            this.GetComponent<Rigidbody>().velocity = ballPositionInfo.ballVelocity;
         }
     }
 
     void FixedUpdate()
     {
-        if (moving)
-        {
-            this.transform.position += velocity * Time.deltaTime * 50;
-        }
+        BallPositionInfo ballPositionInfo = new BallPositionInfo(gameObject.transform.position, gameObject.GetComponent<Rigidbody>().velocity);
+        timeManager.SaveBallPosition(ballPositionInfo);
     }
 
     public void StartBall(float force)
     {
+        GameObject.Find("ScoreTracker").GetComponent<ScoreTracker>().ResetScore();
         this.GetComponent<Rigidbody>().AddForce(baseForwardVelocity * force, ForceMode.Impulse);
     }
 
