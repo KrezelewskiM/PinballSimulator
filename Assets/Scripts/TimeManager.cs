@@ -22,13 +22,13 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) == true)
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown("joystick button 4"))
         {
             Time.timeScale = Mathf.Max(0, Time.timeScale - CHANGE_STEP);
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
             UpdateGameSpeedLabel();
         }
-        if (Input.GetKeyDown(KeyCode.W) == true)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown("joystick button 5"))
         {
             Time.timeScale = Mathf.Min(1, Time.timeScale + CHANGE_STEP);
             Time.fixedDeltaTime = 0.02F * Time.timeScale;

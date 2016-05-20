@@ -4,27 +4,27 @@ public class BallController : MonoBehaviour
 {
     private Vector3 velocity;
     private Vector3 baseForwardVelocity;
-    private bool moving;
 
     public TimeManager timeManager;
+    private SpringLauncherController springController;
 
     void Start()
     {
-        moving = false;
+        springController = GameObject.FindGameObjectWithTag("SpringLauncher").GetComponent<SpringLauncherController>();
         baseForwardVelocity = this.transform.forward;
         Reset();
     }
 
     private void Reset()
     {
-        this.moving = false;
+        springController.launched = false;
         this.velocity = baseForwardVelocity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) == true)
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown("joystick button 2"))
         {
             BallPositionInfo ballPositionInfo = timeManager.GetSavedBallPosition();
             this.transform.position = ballPositionInfo.ballPosition;

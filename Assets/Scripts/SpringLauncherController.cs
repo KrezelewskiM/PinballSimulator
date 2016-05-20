@@ -8,19 +8,21 @@ public class SpringLauncherController : MonoBehaviour
     public GameObject startingPosition;
 	
 	public float springForce;
+    public bool launched;
 
     // Use this for initialization
     void Start()
     {
-
+        launched = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) == true)
+        if (!launched && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown("joystick button 1")))
         {
 			ball.StartBall(springForce);
+            launched = true;
         }
     }
 }
