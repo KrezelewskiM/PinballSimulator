@@ -11,12 +11,15 @@ public class SimulationManager : MonoBehaviour {
 
     public SpringLauncherController springController;
     public ScoreTracker scoreTracker;
+    public TimeTracker timeTracker;
 
-    private StreamWriter saveFile;
+    private StreamWriter saveFileScores;
+    private StreamWriter saveFileTime;
 
 	// Use this for initialization
 	void Start () {
-        saveFile = File.CreateText("scores" + ".txt");
+        saveFileScores = File.CreateText("scores" + ".txt");
+        saveFileTime = File.CreateText("times" + ".txt");
 	}
 	
 	// Update is called once per frame
@@ -30,16 +33,24 @@ public class SimulationManager : MonoBehaviour {
     void StartSimulation()
     {
         Debug.Log("Simulation - starting simulation with force: " + currentSpringStrength);
+        timeTracker.StartTrackingTime();
         springController.LaunchBall(currentSpringStrength);
     }
 
     void SaveScore()
     {
-        saveFile.Write(currentSpringStrength);
-        saveFile.Write(";");
-        saveFile.Write(scoreTracker.GetScore());
-        saveFile.WriteLine();
-        saveFile.Flush();
+        SaveToFile(saveFileScores, scoreTracker.GetScore().ToString());
+
+        SaveToFile(saveFileTime, timeTracker.GetElapsedTime().ToString());
+    }
+
+    private void SaveToFile(StreamWriter file, String value)
+    {
+        file.Write(currentSpringStrength);
+        file.Write(";");
+        file.Write(value);
+        file.WriteLine();
+        file.Flush();
     }
 
     public void OnRestart()
