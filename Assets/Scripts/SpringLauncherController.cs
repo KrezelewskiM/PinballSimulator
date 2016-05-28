@@ -21,8 +21,14 @@ public class SpringLauncherController : MonoBehaviour
     {
         if (!launched && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown("joystick button 1")))
         {
-			ball.StartBall(springForce);
-            launched = true;
+            LaunchBall(springForce);
         }
+    }
+
+    public void LaunchBall(float force)
+    {
+        Debug.Log("Simulation - launch ball");
+        ball.StartBall(force);
+        launched = true;
     }
 }

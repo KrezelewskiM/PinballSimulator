@@ -4,4 +4,5 @@
     public const string GAME_MANAGER_NAME = "GameManager";
     public const string LEFT_TRIGGER = "LeftTrigger";
     public const string RIGHT_TRIGGER = "RightTrigger";
+    public const string SPRING_LAUNCHER_TAG = "SpringLauncher";
 }

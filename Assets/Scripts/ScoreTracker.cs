@@ -25,6 +25,11 @@ public class ScoreTracker : MonoBehaviour
         UpdateScoreLabel();
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
     private void UpdateScoreLabel()
     {
         this.scoreLabel.text = "Score: " + score;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BallController : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class BallController : MonoBehaviour
 
     public TimeManager timeManager;
     private SpringLauncherController springController;
+
+    public SimulationManager simulationManager;
 
     void Start()
     {
@@ -44,12 +47,23 @@ public class BallController : MonoBehaviour
         this.GetComponent<Rigidbody>().AddForce(baseForwardVelocity * force, ForceMode.Impulse);
     }
 
+    private void SignalSimulationRestart()
+    {
+        simulationManager.OnRestart();
+    }
+
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == Constants.GAME_OVER_TAG)
         {
             Reset();
             GameObject.Find(Constants.GAME_MANAGER_NAME).GetComponent<GameManager>().RestartGame();
+            SignalSimulationRestart();
+        }
+        else if (col.gameObject.tag == Constants.SPRING_LAUNCHER_TAG)
+        {
+            Debug.Log("Collided with spring launcher");
+            SignalSimulationRestart();
         }
         else
         {
