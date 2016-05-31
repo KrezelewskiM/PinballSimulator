@@ -3,7 +3,8 @@ using System.Collections;
 using System;
 using System.IO;
 
-public class SimulationManager : MonoBehaviour {
+public class SimulationManager : MonoBehaviour
+{
 
     private int currentSpringStrength = 0;
     private int FORCE_STEP = 10;
@@ -16,32 +17,46 @@ public class SimulationManager : MonoBehaviour {
     private StreamWriter saveFileScores;
     private StreamWriter saveFileTime;
 
-	// Use this for initialization
-	void Start () {
-        saveFileScores = File.CreateText("scores" + ".txt");
-        saveFileTime = File.CreateText("times" + ".txt");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (Input.GetKeyDown(KeyCode.S) == true)
+    public bool isSimulationActive;
+    
+    private const string RESULTS_FOLDER = "results/";
+
+    // Use this for initialization
+    void Start()
+    {
+        if (isSimulationActive)
+        {
+            saveFileScores = File.CreateText(RESULTS_FOLDER + "scores" + ".txt");
+            saveFileTime = File.CreateText(RESULTS_FOLDER + "times" + ".txt");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S) == true)
         {
             StartSimulation();
         }
-	}
+    }
 
     void StartSimulation()
     {
-        Debug.Log("Simulation - starting simulation with force: " + currentSpringStrength);
-        timeTracker.StartTrackingTime();
-        springController.LaunchBall(currentSpringStrength);
+        if (isSimulationActive)
+        {
+            Debug.Log("Simulation - starting simulation with force: " + currentSpringStrength);
+            timeTracker.StartTrackingTime();
+            springController.LaunchBall(currentSpringStrength);
+        }
     }
 
     void SaveScore()
     {
-        SaveToFile(saveFileScores, scoreTracker.GetScore().ToString());
-
-        SaveToFile(saveFileTime, timeTracker.GetElapsedTime().ToString());
+        if (isSimulationActive)
+        {
+            SaveToFile(saveFileScores, scoreTracker.GetScore().ToString());
+            SaveToFile(saveFileTime, timeTracker.GetElapsedTime().ToString());
+        }
     }
 
     private void SaveToFile(StreamWriter file, String value)
@@ -55,11 +70,14 @@ public class SimulationManager : MonoBehaviour {
 
     public void OnRestart()
     {
-        currentSpringStrength += FORCE_STEP;
-        SaveScore();
-        if (currentSpringStrength <= MAX_FORCE)
+        if (isSimulationActive)
         {
-            StartSimulation();
+            currentSpringStrength += FORCE_STEP;
+            SaveScore();
+            if (currentSpringStrength <= MAX_FORCE)
+            {
+                StartSimulation();
+            }
         }
     }
 }
