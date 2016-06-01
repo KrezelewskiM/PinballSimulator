@@ -15,11 +15,13 @@ public class SimulationManager : MonoBehaviour {
 
     private StreamWriter saveFileScores;
     private StreamWriter saveFileTime;
+    private bool simulationPending;
 
 	// Use this for initialization
 	void Start () {
         saveFileScores = File.CreateText("scores" + ".txt");
         saveFileTime = File.CreateText("times" + ".txt");
+        simulationPending = false;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +34,7 @@ public class SimulationManager : MonoBehaviour {
 
     void StartSimulation()
     {
+        simulationPending = true;
         Debug.Log("Simulation - starting simulation with force: " + currentSpringStrength);
         timeTracker.StartTrackingTime();
         springController.LaunchBall(currentSpringStrength);
@@ -55,11 +58,14 @@ public class SimulationManager : MonoBehaviour {
 
     public void OnRestart()
     {
-        currentSpringStrength += FORCE_STEP;
-        SaveScore();
-        if (currentSpringStrength <= MAX_FORCE)
+        if (simulationPending)
         {
-            StartSimulation();
+            currentSpringStrength += FORCE_STEP;
+            SaveScore();
+            if (currentSpringStrength <= MAX_FORCE)
+            {
+                StartSimulation();
+            }
         }
     }
 }

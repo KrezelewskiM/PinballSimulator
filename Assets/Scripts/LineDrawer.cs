@@ -39,20 +39,17 @@ public class LineDrawer : MonoBehaviour
                 currentPoint += ballVelocity * timeDelta + 0.5f * Physics.gravity * timeDelta * timeDelta;
                 ballVelocity += Physics.gravity * timeDelta;
 
-                if (Physics.SphereCast(previousPoint, 0.5f, currentPoint - previousPoint, out hit, Vector3.Distance(previousPoint, currentPoint)))
+                if (!firstCollision && Physics.SphereCast(previousPoint, 0.5f, currentPoint - previousPoint, out hit, Vector3.Distance(previousPoint, currentPoint)))
                 {
-                    if (firstCollision)
-                    {
-                        currentPoint = previousPoint;
-                    }
-                    else
-                    {
-                        ballVelocity = Vector3.Reflect(ballVelocity, hit.normal);
-                        currentPoint += ballVelocity * timeDelta + 0.5f * Physics.gravity * timeDelta * timeDelta;
-                        ballVelocity += Physics.gravity * timeDelta;
-                        firstCollision = true;
-                    }
+                    ballVelocity = Vector3.Reflect(ballVelocity, hit.normal);
+                    currentPoint += ballVelocity * timeDelta + 0.5f * Physics.gravity * timeDelta * timeDelta;
+                    ballVelocity += Physics.gravity * timeDelta;
+                    firstCollision = true;
+                }
 
+                if (firstCollision)
+                {
+                    currentPoint = previousPoint;
                 }
 
                 lineRenderer.SetPosition(i, currentPoint);
