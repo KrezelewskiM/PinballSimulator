@@ -617,6 +617,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434942390}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &572842911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 572842912}
+  - 114: {fileID: 572842913}
+  m_Layer: 0
+  m_Name: AngleSimulation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &572842912
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 572842911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1658725577}
+  m_RootOrder: 2
+--- !u!114 &572842913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 572842911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39069c30f26c44e4f9a136a0590bf1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  springController: {fileID: 1067938451}
+  scoreTracker: {fileID: 957382857}
+  timeTracker: {fileID: 1598444208}
+  boardManager: {fileID: 1825070715}
 --- !u!1 &634637341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,8 +1749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3cd32469be642f79e09745b1b7570a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSimulationActive: 0
-  simulation: {fileID: 791344053}
+  isSimulationActive: 1
+  simulation: {fileID: 572842913}
 --- !u!4 &1481771591
 Transform:
   m_ObjectHideFlags: 0
@@ -1859,6 +1902,7 @@ Transform:
   m_Children:
   - {fileID: 1481771591}
   - {fileID: 791344052}
+  - {fileID: 572842912}
   m_Father: {fileID: 0}
   m_RootOrder: 15
 --- !u!1 &1732389964
